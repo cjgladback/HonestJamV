@@ -1,0 +1,11 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+
+uniform vec4 color : hint_color = vec4(0.4, 0.2, 0.6, 1);
+
+void fragment(){
+	ALBEDO = color.rgb;
+}
+"

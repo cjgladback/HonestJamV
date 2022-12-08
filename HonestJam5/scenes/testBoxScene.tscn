@@ -1,30 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/scripts/rotateBlock.gd" type="Script" id=1]
 [ext_resource path="res://assets/scripts/clickManager.gd" type="Script" id=2]
-
-[sub_resource type="Shader" id=1]
-code = "/*
-	MatCap Shader by Firerabbit
-	
-	MIT License
-*/
-
-shader_type spatial;
-
-//uniform sampler2D matcap : hint_black_albedo;
-//uniform float metalness : hint_range(0.0,1.0) = 1.0;
-uniform vec4 color : hint_color = vec4(1.0);
-
-void fragment() {
-//	vec2 matcap_uv = (NORMAL.xy * vec2(0.5, -0.5) + vec2(0.5, 0.5));
-	ALBEDO = color.rgb;
-//	ALBEDO *= mix(vec3(1.0), texture(matcap, matcap_uv).rgb, metalness);
-}"
+[ext_resource path="res://assets/shaders/flatColor.tres" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = ExtResource( 3 )
 shader_param/color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/color = Color( 0.4, 0.2, 0.6, 1 )
+
+[sub_resource type="BoxShape" id=4]
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
@@ -48,3 +37,16 @@ shadow_bias = 0.0
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.095, 6 )
 fov = 50.0
+
+[node name="Drawers" type="Spatial" parent="."]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3, 1, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="Drawers"]
+material = SubResource( 3 )
+
+[node name="Area" type="Area" parent="Drawers/CSGBox"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Drawers/CSGBox/Area"]
+shape = SubResource( 4 )
+
+[connection signal="input_event" from="Drawers/CSGBox/Area" to="." method="_on_Area_input_event"]
