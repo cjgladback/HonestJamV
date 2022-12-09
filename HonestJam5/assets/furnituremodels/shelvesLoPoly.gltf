@@ -1,0 +1,117 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v3.2.40",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "shelvesLoPoly"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "shelvesMat",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8000000715255737,
+                    0.16776032745838165,
+                    0.15864217281341553,
+                    1
+                ],
+                "metallicFactor" : 0.5,
+                "roughnessFactor" : 0.75
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 74,
+            "max" : [
+                0.550000011920929,
+                0.30000001192092896,
+                0.5
+            ],
+            "min" : [
+                -0.550000011920929,
+                0,
+                -0.05000000074505806
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 74,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 74,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 174,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 888,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 888,
+            "byteOffset" : 888
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 592,
+            "byteOffset" : 1776
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 348,
+            "byteOffset" : 2368
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 2716,
+            "uri" : "shelvesLoPoly.bin"
+        }
+    ]
+}

@@ -3,17 +3,13 @@
 [ext_resource path="res://assets/scripts/rotateBlock.gd" type="Script" id=1]
 [ext_resource path="res://assets/scripts/clickManager.gd" type="Script" id=2]
 [ext_resource path="res://assets/shaders/flatColor.tres" type="Shader" id=3]
+[ext_resource path="res://assets/instanceScenes/drawersBaseLoPoly.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="ShaderMaterial" id=3]
-resource_local_to_scene = true
-shader = ExtResource( 3 )
-shader_param/color = Color( 0.4, 0.2, 0.6, 1 )
-
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=3]
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
@@ -38,15 +34,15 @@ shadow_bias = 0.0
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 4.095, 6 )
 fov = 50.0
 
-[node name="Drawers" type="Spatial" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3, 1, 0 )
+[node name="drawersBaseLoPoly" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.534485, 0, -0.845178, 0, 1, 0, 0.845178, 0, 0.534485, 2.74633, 0, 0 )
 
-[node name="CSGBox" type="CSGBox" parent="Drawers"]
-material = SubResource( 3 )
+[node name="Area" type="Area" parent="drawersBaseLoPoly/drawersBaseLoPoly" index="0"]
 
-[node name="Area" type="Area" parent="Drawers/CSGBox"]
+[node name="CollisionShape" type="CollisionShape" parent="drawersBaseLoPoly/drawersBaseLoPoly/Area"]
+transform = Transform( 0.505, 0, 0, 0, 0.05, 0, 0, 0, 0.25, 0, 0.05, 0.25 )
+shape = SubResource( 3 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Drawers/CSGBox/Area"]
-shape = SubResource( 4 )
+[connection signal="input_event" from="drawersBaseLoPoly/drawersBaseLoPoly/Area" to="." method="_on_Area_input_event"]
 
-[connection signal="input_event" from="Drawers/CSGBox/Area" to="." method="_on_Area_input_event"]
+[editable path="drawersBaseLoPoly"]
